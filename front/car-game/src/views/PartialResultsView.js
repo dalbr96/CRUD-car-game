@@ -10,20 +10,21 @@ const PartialResultsView = (props) => {
     let runGame = async () => {
         setGameStarted(true);
         fetch(`${HOST_API}/${props.gameId}/run-game/`)
-            .then(response => response.json())
+            .then(response => response)
             .then(response => console.log(response))
     };
 
     const bringInformation = () => {
         fetch(`${HOST_API}/partial-result/game/${props.gameId}`)
             .then(response => response.json())
-            .then(response => partialResults =response)
+            .then(response => partialResults = response)
     }
 
 
     useEffect(() => {
 
         setInterval(bringInformation, 1000)
+        
         if(!gameStarted){
             runGame();
         }

@@ -10,8 +10,6 @@ const CreatePlayerView = (props) => {
 
     const [players, setPlayers] = useState([]);
 
-
-
     const startGame = (event) => {
 
         event.preventDefault();
@@ -27,7 +25,7 @@ const CreatePlayerView = (props) => {
 
         }
 
-        for (let i = 0; i < playerListEntity.length; i++) {
+        for (var i = 0; i < playerListEntity.length; i++) {
 
             const playerName = playerListEntity[i].name;
 
@@ -67,13 +65,13 @@ const CreatePlayerView = (props) => {
                     })
                         .then(response => response.json())
                         .then(response => {
-                            ReactDOM.render(<PartialResultsView gameId={props.gameId} />, document.getElementById("app-container"))
+                            console.log(response)
                         })
 
                 })
 
         }
-
+        ReactDOM.render(<PartialResultsView gameId={props.gameId} />, document.getElementById("app-container"))
     }
 
     const submitForm = (event) => {
