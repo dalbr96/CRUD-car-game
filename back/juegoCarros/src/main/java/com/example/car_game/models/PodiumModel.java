@@ -6,9 +6,15 @@ public class PodiumModel {
 
     private Integer firstPlayerId;
 
+    private String firstPlayerName;
+
     private Integer secondPlayerId;
 
+    private String secondPlayerName;
+
     private Integer thirdPlayerId;
+
+    private String thirdPlayerName;
 
     private Integer gameId;
 
@@ -28,6 +34,14 @@ public class PodiumModel {
         this.firstPlayerId = firstPlayerId;
     }
 
+    public String getFirstPlayerName() {
+        return firstPlayerName;
+    }
+
+    public void setFirstPlayerName(String firstPlayerName) {
+        this.firstPlayerName = firstPlayerName;
+    }
+
     public Integer getSecondPlayerId() {
         return secondPlayerId;
     }
@@ -36,12 +50,28 @@ public class PodiumModel {
         this.secondPlayerId = secondPlayerId;
     }
 
+    public String getSecondPlayerName() {
+        return secondPlayerName;
+    }
+
+    public void setSecondPlayerName(String secondPlayerName) {
+        this.secondPlayerName = secondPlayerName;
+    }
+
     public Integer getThirdPlayerId() {
         return thirdPlayerId;
     }
 
     public void setThirdPlayerId(Integer thirdPlayerId) {
         this.thirdPlayerId = thirdPlayerId;
+    }
+
+    public String getThirdPlayerName() {
+        return thirdPlayerName;
+    }
+
+    public void setThirdPlayerName(String thirdPlayerName) {
+        this.thirdPlayerName = thirdPlayerName;
     }
 
     public Integer getGameId() {
