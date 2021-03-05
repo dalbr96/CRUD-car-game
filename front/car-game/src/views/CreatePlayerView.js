@@ -95,6 +95,7 @@ const CreatePlayerView = (props) => {
                     </div>
                     <div className="col">
                         <select defaultValue="Color" name={`player${i}`} className="form-select" aria-label="Default select example" onChange={submitColor}>
+                            <option value = "Color" disabled>Color</option>
                             <option value="Black">Black</option>
                             <option value="Red">Red</option>
                             <option value="White">White</option>
