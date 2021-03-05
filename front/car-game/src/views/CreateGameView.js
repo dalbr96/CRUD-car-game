@@ -32,9 +32,6 @@ const CreateGameView = () => {
                 console.log(response)
                 ReactDOM.render(<CreatePlayerView players = {response.numberOfPlayers} gameId = {response.id}/>, document.getElementById("app-container"))
             })
-
-        
-
     }
 
     return (

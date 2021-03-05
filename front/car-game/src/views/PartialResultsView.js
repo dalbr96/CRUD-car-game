@@ -40,7 +40,7 @@ const PartialResultsView = (props) => {
 
     return (
         <div>
-            <table className="table" key="PartialResults">
+            {!gameEnded &&  <table className="table" key="PartialResults">
                 <thead>
                     <tr>
                         <th scope="col">Jugador</th>
@@ -59,7 +59,7 @@ const PartialResultsView = (props) => {
                         )
                     })}
                 </tbody>
-            </table>
+            </table>}         
             {gameEnded && <PodiumView podium = {podium} key="Podium"/>}
         </div>
 
