@@ -10,6 +10,7 @@ const CreateGameView = () => {
     const [distance, setDistance] = useState(0)
 
 
+
     const create = (event) => {
 
         event.preventDefault();
