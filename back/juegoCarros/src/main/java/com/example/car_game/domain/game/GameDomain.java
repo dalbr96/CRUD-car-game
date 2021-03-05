@@ -1,8 +1,8 @@
 package com.example.car_game.domain.game;
 
 import com.example.car_game.domain.game.values.Pist;
-import com.example.car_game.domain.game.values.Podium;
 import com.example.car_game.entities.Player;
+import com.example.car_game.entities.Podium;
 
 import java.util.HashMap;
 import java.util.Map;
