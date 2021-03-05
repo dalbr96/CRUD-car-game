@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
+import PartialResultsView from './PartialResultsView'
 
 
 const HOST_API = "http://localhost:8080/api"
-
+let colorList = [];
 
 const CreatePlayerView = (props) => {
 
     const [players, setPlayers] = useState([]);
-    let colorList = [];
-    let partialResults = [];
+
 
 
     const startGame = (event) => {
@@ -17,11 +18,8 @@ const CreatePlayerView = (props) => {
 
         var playerListEntity = [];
 
-        for (var i in players) {
-
-            console.log(i);
+        for (let i in players) {
             const player = players[i];
-            console.log(player)
 
             playerListEntity.push({
                 name: player,
@@ -29,13 +27,11 @@ const CreatePlayerView = (props) => {
 
         }
 
-        for(var i=0; i < playerListEntity.length; i++){
+        for (let i = 0; i < playerListEntity.length; i++) {
 
             const playerName = playerListEntity[i].name;
-            const color = colorList[i];
-            partialResults.push({"name": playerName, "color": color})
 
-            console.log(partialResults)
+            const color = colorList[i];
 
             const request = {
                 name: playerName
@@ -50,22 +46,43 @@ const CreatePlayerView = (props) => {
             })
                 .then(response => response.json())
                 .then(response => {
-                    partialResults.push(response)
-                    console.log(partialResults)
+                    response.gameId = props.gameId;
+                    response.color = color;
+                    response.distance = 0;
+
+                    const request = {
+                        playerName: playerName,
+                        playerId: response.id,
+                        gameId: props.gameId,
+                        partialDistance: response.distance,
+                        color: response.color
+                    }
+
+                    fetch(`${HOST_API}/partial-result`, {
+                        method: "POST",
+                        body: JSON.stringify(request),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(response => {
+                            ReactDOM.render(<PartialResultsView gameId={props.gameId} />, document.getElementById("app-container"))
+                        })
+
                 })
 
         }
 
-
-        console.log(partialResults)
-    };
+    }
 
     const submitForm = (event) => {
         setPlayers({ ...players, [event.target.name]: event.target.value })
     }
 
-    const submitColor = (event) =>{
+    const submitColor = (event) => {
         colorList.push(event.target.value)
+        console.log(colorList)
     }
 
     var playerList = []
@@ -79,7 +96,7 @@ const CreatePlayerView = (props) => {
                         <input type="text" className="form-control" name={`player${i}`} onInput={submitForm} ></input>
                     </div>
                     <div className="col">
-                        <select defaultValue ="Color" name={`player${i}`} className="form-select" aria-label="Default select example" onChange={submitColor}>
+                        <select defaultValue="Color" name={`player${i}`} className="form-select" aria-label="Default select example" onChange={submitColor}>
                             <option value="Black">Black</option>
                             <option value="Red">Red</option>
                             <option value="White">White</option>
