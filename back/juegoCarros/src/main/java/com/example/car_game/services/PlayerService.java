@@ -30,6 +30,10 @@ public class PlayerService {
 
     public PlayerModel save (PlayerModel playerModel){
         Player player = Assembler.makePlayer(playerModel);
+
+        if(playerRepository.findByPlayer(player) != null){
+            return playerModel;
+        }
         return Assembler.makePlayerModel(playerRepository.save(player));
     }
 
