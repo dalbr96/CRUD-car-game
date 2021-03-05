@@ -4,7 +4,7 @@ const PartialResultsView = (props) => {
 
     const HOST_API = "http://localhost:8080/api"
 
-    let partialResults = []
+    const [partialResults, setPartialResults] = useState([])
     const [gameStarted, setGameStarted] = useState(false);
 
     let runGame = async () => {
@@ -17,13 +17,13 @@ const PartialResultsView = (props) => {
     const bringInformation = () => {
         fetch(`${HOST_API}/partial-result/game/${props.gameId}`)
             .then(response => response.json())
-            .then(response => partialResults = response)
+            .then(response => setPartialResults(response))
     }
 
 
     useEffect(() => {
 
-        setInterval(bringInformation, 1000)
+        setTimeout(bringInformation, 1000)
         
         if(!gameStarted){
             runGame();
