@@ -17,7 +17,6 @@ const PartialResultsView = (props) => {
             .then(response => {
                 setGameEnded(true);
                 setPodium(response);
-                console.log(response)
             })
     };
 
@@ -30,14 +29,13 @@ const PartialResultsView = (props) => {
 
     useEffect(() => {
 
-        setTimeout(bringInformation, 1000)
+        if(!gameEnded){
+            setTimeout(bringInformation, 1000)
+        }
 
         if (!gameStarted) {
             runGame();
         }
-
-
-
     })
 
     return (
