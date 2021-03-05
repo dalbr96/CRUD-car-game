@@ -88,6 +88,7 @@ public class Assembler {
         partialResultModel.setPartialDistance(partialResult.getPartialDistance());
         partialResultModel.setPlayerId(partialResult.getPlayer().getId());
         partialResultModel.setColor(partialResult.getColor());
+        partialResultModel.setPlayerName(partialResult.getPlayer().getName());
 
         return partialResultModel;
     }
