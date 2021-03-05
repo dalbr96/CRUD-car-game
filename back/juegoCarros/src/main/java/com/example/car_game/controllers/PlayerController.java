@@ -14,11 +14,6 @@ public class PlayerController {
     @Autowired
     private PlayerService playerService;
 
-    @GetMapping(value = "api/players")
-    public Iterable<PlayerModel> list() {
-        return playerService.list();
-    }
-
     @PostMapping(value = "api/player")
     public PlayerModel save (@Valid @RequestBody PlayerModel playerModel){
         return playerService.save(playerModel);

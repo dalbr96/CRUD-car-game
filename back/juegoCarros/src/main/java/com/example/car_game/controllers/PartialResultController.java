@@ -27,11 +27,6 @@ public class PartialResultController {
         }
     }
 
-    @DeleteMapping(value = "api/{id}/partial-result")
-    public void delete(@PathVariable("id") Integer id){
-        partialResultService.delete(id);
-    }
-
     @GetMapping(value = "api/{id}/partial-result")
     public PartialResultModel get (@PathVariable("id") Integer id){
         return partialResultService.get(id);

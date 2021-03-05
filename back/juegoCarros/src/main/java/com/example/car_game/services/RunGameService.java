@@ -33,9 +33,9 @@ public class RunGameService {
 
     private Game game;
 
-    private Map<Integer, Track> tracks = new HashMap<>();
+    private Map<Integer, Track> tracks = new HashMap<>();;
 
-    private GameDomain gameDomain = new GameDomain();
+    private GameDomain gameDomain = new GameDomain();;
 
 
     public PodiumModel startGame(Integer id){
@@ -46,7 +46,11 @@ public class RunGameService {
 
         persistData();
 
-        return Assembler.makePodiumModel(gameDomain.podium());
+        PodiumModel podiumModel = Assembler.makePodiumModel(gameDomain.podium());
+
+        restoreConfiguration();
+
+        return podiumModel;
 
     }
 
@@ -97,7 +101,17 @@ public class RunGameService {
 
     }
 
+    private void restoreConfiguration(){
 
+        tracks = new HashMap<>();
+
+        gameDomain = new GameDomain();;
+
+        game = new Game();
+
+        partialResultRepository.deleteAll();
+
+    }
 
     private void setTracks() {
 
