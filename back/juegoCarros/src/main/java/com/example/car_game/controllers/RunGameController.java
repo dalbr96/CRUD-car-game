@@ -1,5 +1,6 @@
 package com.example.car_game.controllers;
 
+import com.example.car_game.models.PodiumModel;
 import com.example.car_game.services.RunGameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,8 +16,8 @@ public class RunGameController {
     RunGameService runGameService;
 
     @GetMapping(value = "api/{id}/run-game")
-    public void runGame(@PathVariable("id") Integer id){
+    public PodiumModel runGame(@PathVariable("id") Integer id){
 
-        runGameService.startGame(id);
+        return runGameService.startGame(id);
     }
 }

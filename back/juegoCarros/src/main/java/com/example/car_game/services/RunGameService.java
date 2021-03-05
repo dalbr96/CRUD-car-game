@@ -1,11 +1,13 @@
 package com.example.car_game.services;
 
+import com.example.car_game.assembler.Assembler;
 import com.example.car_game.domain.car.Car;
 import com.example.car_game.domain.game.GameDomain;
 import com.example.car_game.domain.game.values.Pist;
 import com.example.car_game.domain.track.Track;
 import com.example.car_game.domain.track.values.Position;
 import com.example.car_game.entities.*;
+import com.example.car_game.models.PodiumModel;
 import com.example.car_game.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,13 +38,15 @@ public class RunGameService {
     private GameDomain gameDomain = new GameDomain();
 
 
-    public void startGame(Integer id){
+    public PodiumModel startGame(Integer id){
 
         initialConfiguration(id);
 
         runGame();
 
         persistData();
+
+        return Assembler.makePodiumModel(gameDomain.podium());
 
     }
 
@@ -67,6 +71,8 @@ public class RunGameService {
             gameDomain.createPlayer(partialResult.getPlayer());
         }
 
+        gameDomain.podium().setGame(game);
+
         setTracks();
 
     }
@@ -84,9 +90,9 @@ public class RunGameService {
 
     private void persistData(){
 
-        persistPodium();
-
         persistGameResults();
+
+        persistPodium();
 
 
     }
@@ -240,13 +246,6 @@ public class RunGameService {
     }
 
     private void persistPodium() {
-        Podium podium = new Podium();
-
-        podium.setGame(game);
-        podium.setFirstPlace(gameDomain.podium().getFirstPlace());
-        podium.setSecondPlace(gameDomain.podium().getSecondPlace());
-        podium.setThirdPlace(gameDomain.podium().getThirdPlace());
-
-        podiumRepository.save(podium);
+        podiumRepository.save(gameDomain.podium());
     }
 }
