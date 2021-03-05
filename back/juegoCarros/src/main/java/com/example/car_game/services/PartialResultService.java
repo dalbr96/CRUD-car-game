@@ -59,7 +59,4 @@ public class PartialResultService {
         return partialResultsModel;
     }
 
-
-
-
 }
