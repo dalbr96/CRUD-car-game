@@ -53,8 +53,11 @@ public class Assembler {
 
         podiumModel.setId(podium.getId());
         podiumModel.setFirstPlayerId(podium.getFirstPlace().getId());
+        podiumModel.setFirstPlayerName(podium.getFirstPlace().getName());
         podiumModel.setSecondPlayerId(podium.getSecondPlace().getId());
+        podiumModel.setSecondPlayerName(podium.getSecondPlace().getName());
         podiumModel.setThirdPlayerId(podium.getThirdPlace().getId());
+        podiumModel.setThirdPlayerName(podium.getThirdPlace().getName());
         podiumModel.setGameId(podium.getGame().getId());
 
         return podiumModel;
