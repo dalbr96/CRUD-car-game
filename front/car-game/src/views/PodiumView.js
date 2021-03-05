@@ -3,7 +3,7 @@ import React from 'react'
 const PodiumView = (props) => {
     return (
         <div>
-            <h2>Ganadores</h2>
+            <h2 className = "centered">Ganadores</h2>
             <table className="table">
                 <thead>
                     <tr>
