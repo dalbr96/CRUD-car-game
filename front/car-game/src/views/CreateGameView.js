@@ -30,7 +30,7 @@ const CreateGameView = () => {
             .then(response => response.json())
             .then(response => {
                 console.log(response)
-                ReactDOM.render(<CreatePlayerView players = {response.numberOfPlayers}/>, document.getElementById("app-container"))
+                ReactDOM.render(<CreatePlayerView players = {response.numberOfPlayers} gameId = {response.id}/>, document.getElementById("app-container"))
             })
 
         
