@@ -44,7 +44,7 @@ public class RunGameService {
 
         runGame();
 
-        persistData();
+        this.persistData();
 
         PodiumModel podiumModel = Assembler.makePodiumModel(gameDomain.podium());
 
@@ -162,6 +162,7 @@ public class RunGameService {
 
                 Thread.currentThread().interrupt();
             }
+
         }
     }
 
