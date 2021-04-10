@@ -33,9 +33,9 @@ public class RunGameService {
 
     private Game game;
 
-    private Map<Integer, Track> tracks = new HashMap<>();;
+    private Map<Integer, Track> tracks = new HashMap<>();
 
-    private GameDomain gameDomain = new GameDomain();;
+    private GameDomain gameDomain = new GameDomain();
 
 
     public PodiumModel startGame(Integer id){
@@ -44,7 +44,7 @@ public class RunGameService {
 
         runGame();
 
-        this.persistData();
+        persistData();
 
         PodiumModel podiumModel = Assembler.makePodiumModel(gameDomain.podium());
 
